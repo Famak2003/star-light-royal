@@ -17,11 +17,13 @@ module.exports = {
         b_divider: "#d1d5db",
       },
       screens: {
+        xs: "350px",
         mobile: "450px",
-        tab: "950px"
+        tab: "950px",
+        xl: "1240px"
       },
       maxWidth: {
-        'mx-width': "1170px"
+        'mx-width': '1170px',
       },
       boxShadow: {
         custom_shadow1: '-7px -8px 23px 10px rgba(0,0,0,0.2) inset',
