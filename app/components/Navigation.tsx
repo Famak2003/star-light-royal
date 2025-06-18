@@ -62,29 +62,29 @@ const Navigation = ({activeSection}: {activeSection: string}) => {
         <nav className=" w-full flex flex-col justify-center items-center ">
             <div className=" flex justify-center items-center min-h-[80px] px-2 w-full ">
                 <div className=" flex flex-col mobile:flex-row gap-3 py-2 mobile:py-0 justify-between items-center h-full w-full max-w-[1170px]  ">
-                <figure className=" flex justify-center items-center w-[50px] md:w-[60px] aspect-square rounded-lg overflow-hidden " >
-                    <Image className="  " width={ 60 } height={ 60 } alt="star light royal logo " src={Logo} />
-                </figure>
-                <div className=" flex flex-col mobile:flex-row gap-3 mobile:gap-6 justify-between items-center  ">
-                    <div className=" flex items-center gap-2 md:gap-4 " >
-                    <span className=" flex justify-center items-center bg-secondary rounded-lg p-1 aspect-square h-[28px] md:h-[42px] ">
-                        <FontAwesomeIcon className=" rotate-90 text-[16px] lg:text-[24px] " icon={ faPhoneAlt } />
-                    </span>
-                    <div>
-                        <p className=" text-[10px] md:text-[12px] text-gray-500  ">CALL US TODAY!</p>
-                        <p className=" text-primary font-extralight text-[12px] md:text-[14px] " >+23 4234 567 890</p>
-                    </div>
-                    </div>
-                    <div className=" flex items-center gap-4 " >
-                    <span className=" flex justify-center items-center bg-secondary rounded-lg p-1 aspect-square h-[28px] md:h-[42px] ">
-                        <FontAwesomeIcon className=" text-[16px] lg:text-[24px] " icon={ faClockFour } />
-                    </span>
-                    <div>
-                        <p className=" text-[12px] text-gray-500  ">WE'RE OPEN!</p>
-                        <p className=" text-primary font-extralight text-[14px] " >Mon-Fri 8:00-6:00</p>
-                    </div>
-                    </div>
-                </div>
+                  <figure className=" flex justify-center items-center w-[50px] md:w-[60px] aspect-square rounded-lg overflow-hidden " >
+                      <Image className="  " width={ 60 } height={ 60 } alt="star light royal logo " src={Logo} />
+                  </figure>
+                  <div className=" flex flex-col mobile:flex-row gap-3 mobile:gap-6 justify-between items-center  ">
+                      <div className=" flex items-center gap-2 md:gap-4 " >
+                      <span className=" flex justify-center items-center bg-secondary rounded-lg p-1 aspect-square h-[28px] md:h-[42px] ">
+                          <FontAwesomeIcon className=" rotate-90 text-[16px] lg:text-[24px] " icon={ faPhoneAlt } />
+                      </span>
+                      <div>
+                          <p className=" text-[10px] md:text-[12px] text-gray-500  ">CALL US TODAY!</p>
+                          <p className=" text-primary font-extralight text-[12px] md:text-[14px] " >+23 4234 567 890</p>
+                      </div>
+                      </div>
+                      <div className=" flex items-center gap-4 " >
+                      <span className=" flex justify-center items-center bg-secondary rounded-lg p-1 aspect-square h-[28px] md:h-[42px] ">
+                          <FontAwesomeIcon className=" text-[16px] lg:text-[24px] " icon={ faClockFour } />
+                      </span>
+                      <div>
+                          <p className=" text-[12px] text-gray-500  ">WE'RE OPEN!</p>
+                          <p className=" text-primary font-extralight text-[14px] " >Mon-Fri 8:00-6:00</p>
+                      </div>
+                      </div>
+                  </div>
                 </div>
             </div>
             <div className=" relative flex justify-center items-center w-full h-fit min-h-[72px] bg-accent">

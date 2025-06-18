@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 
 const ex1 = "./Assets/ex1.jpg"
 const ex2 = "./Assets/ex2.jpeg"
+const ex3 = "./Assets/bike.jpg"
 
 
 const carouselData = [
@@ -15,13 +16,13 @@ const carouselData = [
     bgimage: ex2,
   },
   {
-    bgimage: ex1,
+    bgimage: ex3,
   },
   {
     bgimage: ex2,
   },
   {
-    bgimage: ex1,
+    bgimage: ex3,
   },
 ]
 

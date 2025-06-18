@@ -58,7 +58,7 @@ const Scholarship = () => {
                 <p className=" sectionWriteup ">
                     At Starlight Royal Model Schools, we are committed to making quality education accessible to all, especially students who show potential but may face financial or personal barriers. Our scholarship and support schemes are designed to reward excellence, recognize special circumstances, and encourage commitment to learning.
                 </p>
-                <ul className=" columns-1 mobile:columns-2 md:columns-3 gap-2 h-fit md:max-h-[790px] w-full overflow-x-hidden duration-700 transition-all " >
+                <ul className=" DisableScrollBar overflow-auto columns-1 mobile:columns-2 md:columns-3 gap-2 h-fit md:max-h-[790px] w-full overflow-x-hidden duration-700 transition-all " >
                     {
                         scholarshipTypes.map((obj, idx) => {
                             const [ref, inView] = useInView({

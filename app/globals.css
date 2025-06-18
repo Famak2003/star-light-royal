@@ -20,6 +20,105 @@
     --foreground: #ededed;
   }
 }
+.ProseMirror{
+  border: none !important;
+}
+
+ol li {
+  list-style-type: circle;
+}
+
+/* Basic editor styles */
+.tiptap {
+  :first-child {
+    margin-top: 0;
+  }
+
+  /* List styles */
+  ul, 
+  ol {
+    padding: 0 1rem;
+    margin: 1.25rem 1rem 1.25rem 0.4rem;
+    
+    li p {
+      margin-top: 0.25em;
+      margin-bottom: 0.25em;
+    }
+  }
+
+  /* Heading styles */
+  h1, 
+  h2, 
+  h3, 
+  h4, 
+  h5, 
+  h6 {
+    line-height: 1.1;
+    margin-top: 2.5rem;
+    text-wrap: pretty;
+  }
+
+  h1, 
+  h2 {
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 { 
+    font-size: 1.4rem; 
+  }
+
+  h2 { 
+    font-size: 1.2rem; 
+  }
+
+  h3 { 
+    font-size: 1.1rem; 
+  }
+
+  h4, 
+  h5, 
+  h6 { 
+    font-size: 1rem; 
+  }
+
+  /* Code and preformatted text styles */
+  code {
+    background-color: var(--purple-light);
+    border-radius: 0.4rem;
+    color: var(--black);
+    font-size: 0.85rem;
+    padding: 0.25em 0.3em;
+  }
+
+  pre {
+    background: var(--black);
+    border-radius: 0.5rem;
+    color: var(--white);
+    font-family: 'JetBrainsMono', monospace;
+    margin: 1.5rem 0;
+    padding: 0.75rem 1rem;
+
+    code {
+      background: none;
+      color: inherit;
+      font-size: 0.8rem;
+      padding: 0;
+    }
+  }
+
+  blockquote {
+    border-left: 3px solid var(--gray-3);
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--gray-2);
+    margin: 2rem 0;
+  }
+}
 
 body {
   background: var(--background);
@@ -47,6 +146,134 @@ body {
 }
 
 
+.ant-switch-inner {
+  background-color: #6C6F00 !important;
+}
+
+.DisableScrollBar {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.DisableScrollBar::-webkit-scrollbar {
+  display: none;
+}
+.DisableScrollBar::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+.CustomiseX-ScrollBar {
+  overflow-x: scroll;
+}
+
+.CustomiseX-ScrollBar::-webkit-scrollbar {
+  height: 4px;
+  background-color: #ffffff;
+  border-radius: 1rem;
+}
+
+.CustomiseX-ScrollBar::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: #6C6F00;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  /* background-size: ; */
+}
+
+/* disables input ring on focus */
+input:focus { 
+  outline: none;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.dashboardBody{
+  /* background-size: ; */
+  height: calc(100vh - 74px)
+}
+
+#carousel > div{
+  border-radius: 0 !important;
+}
+
+.ant-menu-vertical{
+  border-radius: 0px !important;
+}
+
+.ant-tooltip-inner{
+  background: var(--base_yellow) !important;
+  color: #0a0a0a !important;
+}
+
+.ant-tooltip-arrow ::before{
+  background: var(--base_yellow) !important ;
+}
+
+@font-face {
+  font-family: 'Zooja Pro';
+  src: url('/fonts/ZoojaPro.woff2') format('woff2'),
+       url('/fonts/ZoojaPro.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+/* BajaCalifornia */
+@font-face {
+  font-family: 'California Medium';
+  src: url('/fonts/California Medium.woff2') format('woff2'),
+      url('/fonts/California Medium.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+.California-font {
+  font-family: California Medium, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.zooja-font {
+  font-family: Zooja pro, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.breadcrumbs > ol{
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.breadcrumbs > ol > li > a{
+  height: 100%;
+}
+
+#mayorStrip{
+  background: rgb(255,255,255);
+  background: linear-gradient(120deg, rgba(255,255,255,1) 38%, rgba(215,221,23,1) 38%);
+}
+
+#mayorStripList{
+  --p: 5%; /* control the shape (can be percentage) */
+  aspect-ratio: 1;
+  clip-path: polygon(var(--p) 0,100% 0,100% 100%,0 100%);
+}
+
+@media (max-width: 949px) {
+  #mayorStripList{
+    clip-path: none;
+  }
+  #mayorStrip{
+    background: white;
+  }
+}
+
+
 @layer components {
   .carouselSlideActionBtn{
     @apply flex justify-center items-center hover:bg-[rgba(255,255,255,0.3)] w-[45px] sm:w-[70px] aspect-square rounded-full
@@ -71,5 +298,125 @@ body {
   }
   .footerGroup{
     @apply flex flex-col gap-4 w-full h-full max-w-[292px]
+  }
+  .navIcon{
+    @apply !text-inherit w-[19px] lmd:w-[24px] h-[19px] lmd:h-[24px] 
+  }
+  .navActions button{
+    @apply flex justify-center items-center h-10 w-10 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-500
+  }
+  .barPosition{
+    @apply flex justify-center gap-4 w-[248px] h-[72px] pt-2
+  }
+  .barPosition li{
+    @apply flex gap-1 justify-between items-center max-h-[40px] ring-slate-300 rounded-md ring-1 py-2 px-4 hover:bg-slate-50 text-sm !text-accent
+  }
+  .barPosition li p{
+    @apply text-black
+  }
+  .sidebarPages{
+    @apply flex items-center sidebarHoverEffect dark:text-white !w-full !min-h-[57px] !m-0 !py-0 !px-0 !rounded-none border-b dark:border-slate-600
+  }
+  .sidebarSubPages{
+    @apply !rounded-none border-b dark:border-slate-600 
+  }
+  .sidebarSubPages > div {
+    @apply !flex items-center !m-0 !py-0 !px-4 dark:!text-white gap-3 !w-full !rounded-none !min-h-[57px] sidebarHoverEffect
+  }
+  .collapsedSidebarSubPages > div {
+    @apply !flex items-center !m-0 !py-0 !pr-0 !pl-2 dark:!text-white gap-3 !w-full !rounded-none !min-h-[57px] sidebarHoverEffect
+  }
+  .sidebarSubPages > ul {
+    @apply !bg-gray-100 dark:!bg-slate-500 !border-t dark:border-slate-600
+  }
+  .collapsedSidebarSubPages > ul {
+    @apply !bg-gray-100 dark:!bg-slate-500 !border-t dark:border-slate-600
+  }
+  .subMenuPage{
+    @apply flex gap-4 justify-center items-center !py-0 !px-0 !m-0 !rounded-none !w-full !max-h-[36px] sidebarHoverEffect dark:text-white
+  }
+  .subMenuPage-text{
+    @apply flex h-full items-center !rounded-none
+  }
+  .authInputStyle{
+    @apply hover:border-black focus-within:!border-black bg-gray-200
+  }
+  .inputStyle {
+    @apply text w-full md:max-w-[443px] h-[35px] rounded-md border-gray-300
+  }
+  .sidebarHoverEffect{
+    @apply hover:!bg-b_divider hover:dark:!bg-primary hover:!text-white hover:dark:!text-white
+  }
+  i{
+    @apply dark:!text-white
+  }
+  .sidebarNakedIcon{
+    @apply !h-6 !w-6 !text-secondary dark:!text-white duration-300 transition-all
+  }
+  .dashboarIcon {
+    @apply !h-4 !w-4 !text-dark_yellow dark:!text-gray-600 duration-300 transition-all cursor-pointer
+  }
+  .imageIcon {
+    @apply !h-6 !w-6 !text-dark_yellow dark:!text-gray-600 duration-300 transition-all
+  }
+  .socialLink{
+    @apply flex justify-center items-center h-[25px] w-[25px] bg-gray-200 hover:bg-white hover:ring-1 hover:ring-gray-300 duration-300
+  }
+  .footerSocialLink{
+    @apply flex justify-center items-center h-[25px] w-[25px]  hover:bg-white hover:ring-1 hover:ring-gray-300 duration-300
+  }
+  .text{
+    @apply text-xs md:text-sm
+  }
+  .text16{
+    @apply text-xs xs:text-sm md:text-base
+  }
+  .text18{
+    @apply text-base mobile:text-lg
+  }
+  .text25{
+    @apply text-[17px] lg:text-[25px] font-semibold text-headerColor dark:text-white
+  }
+  .text30{
+    @apply text-[20px] lg:text-[30px] font-semibold text-headerColor dark:text-white
+  }
+  .dashboardHoverSection{
+    @apply flex flex-col gap-6 bg-white dark:bg-dark_side rounded-md p-6 duration-300 transition-all shadow-custom_shad5 w-full overflow-x-scroll
+  }
+  /* .section{
+    @apply w-screen max-w-[1170px] px-4 xl:px-2
+  } */
+  .subPageSection{
+    @apply py-5
+  }
+  .richTextSection{
+    @apply flex flex-col gap-3 text font-semibold leading-8 text-secondary_gray
+  }
+  .checkedList ul {
+    @apply list-none space-y-2;
+  }
+  .checkedList ul li {
+    @apply relative pl-6 before:absolute before:left-0 before:content-['✅'];
+  }
+  .decimalList{
+    @apply flex flex-col gap-2 list-decimal  pl-4
+  }
+  .dashboardPages{
+    @apply relative flex-1 flex flex-col gap-6 justify-center rounded-md overflow-hidden mb-7
+  }
+  .control-group{
+    @apply text-black
+  }
+  .button-group{
+    @apply flex gap-2 flex-wrap
+  }
+  .button-group button{
+    @apply rounded-lg bg-light_gray p-2 h-fit
+  }
+  .is-active{
+    @apply bg-accent
+  }
+  .input{
+    @apply !h-[40px] w-[80%]
   }
 }
