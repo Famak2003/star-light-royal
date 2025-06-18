@@ -55,6 +55,7 @@ const AddSection: React.FC<AddSectionType> = ({isModalVisible, setisModalVisible
 
     }, [])
 
+    // console.log(sectionData?.curriculum)
     
     return(
         <div>
@@ -106,11 +107,12 @@ const AddSection: React.FC<AddSectionType> = ({isModalVisible, setisModalVisible
                                                     if (sectionData?.curriculum.length <= 1){
                                                         return
                                                     }else{
-                                                        setSectionData((prev) => {
-                                                            prev.curriculum.splice(idx, 1)
+                                                        setSectionData((prev: any) => {
+                                                            const newArr = [...prev?.curriculum]
+                                                            newArr.splice(idx, 1)
                                                             return {
                                                                 ...prev,
-                                                                curriculum: [...prev.curriculum]
+                                                                curriculum: [...newArr]
                                                             }
                                                         })
                                                     }
@@ -177,11 +179,12 @@ const AddSection: React.FC<AddSectionType> = ({isModalVisible, setisModalVisible
                                                     if (sectionData?.scholarship.length <= 1){
                                                         return
                                                     }else{
-                                                        setSectionData((prev) => {
-                                                            prev.scholarship.splice(idx, 1)
+                                                        setSectionData((prev: any) => {
+                                                            const newArr = [...prev?.scholarship]
+                                                            newArr.splice(idx, 1)
                                                             return {
                                                                 ...prev,
-                                                                scholarship: [...prev.scholarship]
+                                                                scholarship: [...newArr]
                                                             }
                                                         })
                                                     }
