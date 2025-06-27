@@ -1,18 +1,17 @@
 import { apiSlice } from "."
 
-interface InfoDataType {
-    userCount: number,
-    projectCount: number,
-    newsCount: number,
-    announcementCount: number,
-    eventCount: number
+export interface systemInfoType {
+    email: string,
+    id: number | null,
+    image: string,
+    phone: number | null,
+    slogan: string
 }
 
 export const systemApiSlice = apiSlice.injectEndpoints({
     overrideExisting: true,
-    endpoints: (builder) => ({
-        // post image to get back url
-        postImage:  builder.mutation({
+    endpoints: (builder) => ({                
+        postImage: builder.mutation({ // post image to get back url
             query: (image: FormData) => ({
                 url: "sections/image",
                 method: "POST",
@@ -27,12 +26,16 @@ export const systemApiSlice = apiSlice.injectEndpoints({
                 }
             }
         }),
-        systemInfo: builder.mutation({
+        getSystemInfo: builder.query<systemInfoType, void>({   // get system info
+            query: () => `sections/systeminfo`,
+            keepUnusedDataFor: 0,
+        }),
+        setSystemInfo: builder.mutation({
             query: (data) => {
                 return {
-                    url: "systeminfo",
+                    url: "sections/systeminfo",
                     body: data,
-                    method: "POST"
+                    method: "PATCH"
                 }
             }
         })
@@ -42,5 +45,6 @@ export const systemApiSlice = apiSlice.injectEndpoints({
 export const {
     usePostImageMutation,
     useRemoveImageMutation,
-    useSystemInfoMutation
+    useGetSystemInfoQuery,
+    useSetSystemInfoMutation
 } = systemApiSlice

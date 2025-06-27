@@ -68,7 +68,7 @@ const Navigation = ({activeSection}: {activeSection: string}) => {
                   <div className=" flex flex-col mobile:flex-row gap-3 mobile:gap-6 justify-between items-center  ">
                       <div className=" flex items-center gap-2 md:gap-4 " >
                       <span className=" flex justify-center items-center bg-secondary rounded-lg p-1 aspect-square h-[28px] md:h-[42px] ">
-                          <FontAwesomeIcon className=" rotate-90 text-[16px] lg:text-[24px] " icon={ faPhoneAlt } />
+                          <FontAwesomeIcon className=" rotate-90 text-[16px] text-white lg:text-[24px] " icon={ faPhoneAlt } />
                       </span>
                       <div>
                           <p className=" text-[10px] md:text-[12px] text-gray-500  ">CALL US TODAY!</p>
@@ -77,7 +77,7 @@ const Navigation = ({activeSection}: {activeSection: string}) => {
                       </div>
                       <div className=" flex items-center gap-4 " >
                       <span className=" flex justify-center items-center bg-secondary rounded-lg p-1 aspect-square h-[28px] md:h-[42px] ">
-                          <FontAwesomeIcon className=" text-[16px] lg:text-[24px] " icon={ faClockFour } />
+                          <FontAwesomeIcon className=" text-[16px] lg:text-[24px] text-white " icon={ faClockFour } />
                       </span>
                       <div>
                           <p className=" text-[12px] text-gray-500  ">WE'RE OPEN!</p>
@@ -88,18 +88,18 @@ const Navigation = ({activeSection}: {activeSection: string}) => {
                 </div>
             </div>
             <div className=" relative flex justify-center items-center w-full h-fit min-h-[72px] bg-accent">
-                <ul className={` ${isNavOpen ? "max-h-[500px] sm:max-h-fit" : "max-h-0 sm:max-h-fit "} flex flex-col sm:flex-row w-full h-[400px] sm:h-full overflow-y-scroll max-w-mx-width gap-2 flex-wrap items-center duration-700 transition-all `}>
-                {
-                    navItems.map((obj, idx) => {
-                    return (
-                        <Link key={idx} href={obj.id} >
-                        <li className={` text-[14px] ${activeSection === obj.id ? "bg-white text-secondary" : "text-white"}  rounded-2xl py-1 px-2 `} >
-                            {obj.name}
-                        </li>
-                        </Link>
-                    )
-                    })
-                }
+                <ul className={` ${isNavOpen ? "max-h-[500px] sm:max-h-fit" : "max-h-0 sm:max-h-fit "} flex flex-col justify-center sm:flex-row w-full h-[400px] sm:h-full overflow-y-scroll sm:overflow-y-auto max-w-mx-width gap-2 flex-wrap items-center duration-700 transition-all `}>
+                  {
+                      navItems.map((obj, idx) => {
+                      return (
+                          <Link key={idx} href={obj.id} >
+                          <li className={` text-[14px] ${activeSection === obj.id ? "bg-white text-secondary" : "text-white"}  rounded-2xl py-1 px-2 `} >
+                              {obj.name}
+                          </li>
+                          </Link>
+                      )
+                      })
+                  }
                 </ul>
                 <button 
                     className=" absolute sm:hidden top-[30px] right-3 "

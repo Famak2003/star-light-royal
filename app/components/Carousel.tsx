@@ -172,7 +172,7 @@ const Carousel = () => {
       return () => observers.forEach((observer) => observer.disconnect());
     }, []);
     return(
-        <div className=" relative w-screen h-fit overflow-x-hidden group ">
+        <div className=" relative w-screen h-fit overflow-hidden group ">
           <ul 
             className={` flex w-fit h-[80dvh] transition-all ease-in-out duration-[1.8s] ${isTransitioning ? "no-transition" : "" } `}
             style={{transform: `translateX(calc(${currentSlide} * 100vw))`}}

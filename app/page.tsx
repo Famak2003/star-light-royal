@@ -162,12 +162,12 @@ export default function Home() {
   console.log(currentSlide, carouselData.length)
 
   return (
-    <div className="">
-        <main className=" flex flex-col h-fit bg-white " >
+    <div className="w-screen">
+        <main className=" flex flex-col h-fit bg-transparent w-[100vw] " >
             <Navigation activeSection={activeSection}/>
             <div className=" flex flex-col gap-4 h-fit w-full ">
                 <Carousel/>                
-                <div className=" sectionGroup px-4 ">
+                <div className=" sectionGroup px-4 !bg-transparent ">
                     <div className=" flex flex-col gap-2 max-w-mx-width ">
                         <h1 className=" sectionHeader ">
                             <span className=" border-secondary border-b-4 ">About</span>  <span className=" text-primary font-bold ">Us</span>

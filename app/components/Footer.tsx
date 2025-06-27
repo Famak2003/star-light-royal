@@ -60,7 +60,7 @@ const navItems2 = [
 const Footer = () => {
     return (
         <footer 
-            className=" relative flex  justify-center bg-black bg-opacity-50 text-[14px] w-full h-fit min-h-[500px] text-gray-400 px-4  "
+            className=" relative flex justify-center bg-black bg-opacity-50 text-[14px] w-full h-fit min-h-[500px] text-gray-400 px-4  "
             style={{
                 backgroundImage: `url(${BACKGROUND2})`,
             }}

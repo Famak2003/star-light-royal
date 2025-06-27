@@ -135,7 +135,7 @@ const LeadershipTeam = () => {
                     {
                         team.map((obj, idx) => {
                             const [ref, inView] = useInView({
-                                threshold: window.innerWidth < 768 ? 0.15 : 0.3, // adjusted threshold visibility for smaller screens from 768 below
+                                threshold: window?.innerWidth < 768 ? 0.15 : 0.3, // adjusted threshold visibility for smaller screens from 768 below
                                 triggerOnce: true
                             })
                             return(

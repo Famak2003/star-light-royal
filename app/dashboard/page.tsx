@@ -1,7 +1,7 @@
 "use client"
 
 // import I18N from "@/i18n";
-import { useGetInfoQuery } from "@/lib/api/dashboardApiSlice";
+// import { useGetInfoQuery } from "@/lib/api/dashboardApiSlice";
 import { faBullhorn, faCake, faNewspaper, faPen, faPlus, faProjectDiagram, faTrashAlt, faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { JSX, useEffect, useState } from "react";
@@ -26,9 +26,21 @@ type statsType = statType[]
 
 export default function Dashboard() {
     const { t } = useTranslation()
-    const {data, error, isLoading, refetch} = useGetInfoQuery()
+    // const {data, error, isLoading, refetch} = useGetInfoQuery()
     const [isCreateModalVisible, setisCreateModalVisible] = useState(false)
     const [isCreateCarouselModalVisible, setisCreateCarouselModalVisible] = useState(false)
+
+    // const [sectionData, setSectionData] = useState<sectionData>({
+    //     title: "",
+    //     images: [],
+    //     content: "",
+    //     curriculum: [
+    //         { text: "Testing", id: uuidv4() }
+    //     ],
+    //     scholarship: [
+    //         { text: "famak", content: "testing...", id: uuidv4() }
+    //     ],
+    // })
 
     const columns: TableColumnsType = [
        {
@@ -81,9 +93,9 @@ export default function Dashboard() {
         },
     ]
 
-    useEffect(() => {
-        refetch()
-    }, [])
+    // useEffect(() => {
+    //     refetch()
+    // }, [])
 
     return (
         <div className=" dashboardPages ">
@@ -111,7 +123,7 @@ export default function Dashboard() {
                 </h1>
                 <div className=" dashboardHoverSection ">
                     <AddButton text="ADD SECTION" setState={setisCreateModalVisible} />
-                    <AddSection isModalVisible={isCreateModalVisible} setisModalVisible={setisCreateModalVisible}/>
+                    <AddSection section={""} isModalVisible={isCreateModalVisible} setisModalVisible={setisCreateModalVisible}/>
                     <Table
                         columns={columns}
                         // dataSource={}

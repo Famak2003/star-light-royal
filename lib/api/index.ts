@@ -26,6 +26,8 @@ interface authorizationTokenType {
       prepareHeaders: (headers, { getState }) => {
         const state = getState() as RootState;
         const authorizationToken = state.auth.token
+
+        console.log("authorizationToken", authorizationToken)
   
         if (authorizationToken) {
           headers.set("Authorization", `Bearer ${authorizationToken}`);
@@ -42,6 +44,7 @@ interface authorizationTokenType {
     const { setAuthorizationToken, logoutUser } = await import("../slices/authSlice");
 
     const authorizationToken = result.meta?.response?.headers?.get('Authorization')
+    console.log("authorizationToken", authorizationToken)
     if(authorizationToken){
         api.dispatch(setAuthorizationToken(authorizationToken.split(" ")[1]))
         document.cookie = `token=${authorizationToken}; path=/; samesite=lax`;
@@ -52,7 +55,7 @@ interface authorizationTokenType {
     if (result.error && result.error.status === 401) {
         console.warn("Session expired. Logging out...");
         // Remove token from cookie
-        clearCookie("token")
+        clearCookie("auth_token")
         api.dispatch(logoutUser(undefined));
         toast.error("Unauthorized");
         window.location.reload();

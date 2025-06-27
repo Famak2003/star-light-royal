@@ -7,6 +7,7 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
+  persistStore,
 } from "redux-persist";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import { apiSlice } from './api';
@@ -42,7 +43,7 @@ const createNoopStorage = (): NoopStorage => {
 const persistConfig = {
   key: "root",
   version: 1,
-  blacklist: ['pages'],
+  // blacklist: ['pages'],  
   storage:
     typeof window === "undefined"
       ? createNoopStorage()
@@ -71,4 +72,5 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+export const persistor = persistStore(store);
 export default store;

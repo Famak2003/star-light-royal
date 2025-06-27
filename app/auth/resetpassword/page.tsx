@@ -14,8 +14,8 @@ import toast from "react-hot-toast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faMailBulk, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useChangePasswordMutation, useSendOtpMutation } from "@/lib/api/authApiSlice";
-import { redirect } from "next/navigation";
-import { useRouter } from "next/router";
+import { redirect, useRouter } from "next/navigation";
+// import { useRouter } from "next/router";
 import Link from "next/link";
 type Props = {};
 

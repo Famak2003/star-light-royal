@@ -38,10 +38,10 @@ export default async function RootLayout({
   return (
     <html className=" scroll-smooth " lang={locale} dir={dir(locale)} >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}        
       >
         <StoreProvider>
-          {children}
+            {children}
         </StoreProvider>
       </body>
     </html>

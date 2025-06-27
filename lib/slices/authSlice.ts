@@ -34,8 +34,8 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setAuthorizationToken: (state, action) => {
-        console.log(action);
-      state.token = action.payload;
+        console.log( "Action from authslice", action);
+        state.token = action.payload;
     },
 
     logoutUser: (state, action) => {
@@ -47,32 +47,20 @@ const authSlice = createSlice({
     builder
         .addMatcher(
             authApiSlice.endpoints.login.matchFulfilled,
-            (state, action : PayloadAction<{token: string, user: {}, message: string }>) => {
-                console.log(action.payload)
-                state.token = action.payload.token;
-                state.user = action.payload.user; 
+            (state, action : PayloadAction<{access_token: string, user: {}, message: string }>) => {
+                console.log("payload", action.payload)
+                const authorizationToken = action.payload?.access_token
+                state.token = authorizationToken;
+                state.user = action.payload.user;
+                document.cookie = `auth_token=${authorizationToken}; path=/; max-age=${60 * 60 * 48}; samesite=lax`;
                 window.location.reload();
+
+                // set cookie to authenticate user
             }
         )
         .addMatcher(
             authApiSlice.endpoints.login.matchRejected,
             (state, action ) => {
-                const errData = action.payload?.data as LoginErrorResponse;
-                // toast.error(errData?.message);
-            }
-        )
-        .addMatcher(
-            authApiSlice.endpoints.logout.matchFulfilled,
-            (state, action) => {
-                state.user = {};
-                state.token = "";
-                clearCookie("token")
-                window.location.reload();
-            }
-        )
-        .addMatcher(
-            authApiSlice.endpoints.logout.matchRejected,
-            (state, action) => {
                 const errData = action.payload?.data as LoginErrorResponse;
                 // toast.error(errData?.message);
             }

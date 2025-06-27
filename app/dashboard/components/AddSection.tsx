@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid'
 import { Form, Input, UploadFile } from "antd"
 import CustomModal from "./reuseable/CustomModal"
 import { useEffect, useState } from "react"
@@ -9,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons"
 import TextArea from "antd/es/input/TextArea"
 
-interface sectionData {
+export interface sectionData {
     title: string,
     images: UploadFile<any>[],
     content: string,
@@ -24,18 +25,19 @@ interface sectionData {
 
 interface AddSectionType extends modalStateType {
     data?: sectionData
+    section?: string
 }
 
-const AddSection: React.FC<AddSectionType> = ({isModalVisible, setisModalVisible, data}) => {
+const AddSection: React.FC<AddSectionType> = ({isModalVisible, setisModalVisible, data, section}) => {
     const [sectionData, setSectionData] = useState<sectionData>({
         title: "",
         images: [],
         content: "",
         curriculum: [
-            { text: "Testing", id: crypto.randomUUID() }
+            { text: "", id: uuidv4() }
         ],
         scholarship: [
-            { text: "famak", content: "testing...", id: crypto.randomUUID() }
+            { text: "", content: "", id: uuidv4() }
         ],
     })
     const [postImage] = usePostImageMutation()
@@ -83,135 +85,143 @@ const AddSection: React.FC<AddSectionType> = ({isModalVisible, setisModalVisible
                     >
                         <RichText content={sectionData?.content} setData={setSectionData} />
                     </Form.Item>
-                    <Form.Item
-                        label={"Curriculum"}
-                        name={"curriculum"}
-                    >
-                        <ul className=" px-2 flex flex-col gap-2 ">
-                            {
-                                sectionData?.curriculum.map(({text, id}, idx) => {
-                                    return(
-                                        <li key={`${id}`} className=" flex gap-2 ">
-                                            <Input defaultValue={text} className=" input " placeholder="Enter curriculum name" 
-                                                onChange={(e) => setSectionData((prev): any => {
-                                                    const newArr = [...prev.curriculum]
-                                                    newArr[idx].text = e.target.value
-                                                    return {
-                                                        ...prev,
-                                                        curriculum: newArr
-                                                    }
-                                                })} 
-                                            />
-                                            <button
-                                                onClick={() => {
-                                                    if (sectionData?.curriculum.length <= 1){
-                                                        return
-                                                    }else{
-                                                        setSectionData((prev: any) => {
-                                                            const newArr = [...prev?.curriculum]
-                                                            newArr.splice(idx, 1)
+                    {
+                        section === "curriculum" && (
+                            <Form.Item
+                                label={"Curriculum"}
+                                name={"curriculum"}
+                            >
+                                <ul className=" px-2 flex flex-col gap-2 ">
+                                    {
+                                        sectionData?.curriculum.map(({text, id}, idx) => {
+                                            return(
+                                                <li key={`${id}`} className=" flex gap-2 ">
+                                                    <Input defaultValue={text} className=" input " placeholder="Enter curriculum name" 
+                                                        onChange={(e) => setSectionData((prev): any => {
+                                                            const newArr = [...prev.curriculum]
+                                                            newArr[idx].text = e.target.value
                                                             return {
                                                                 ...prev,
-                                                                curriculum: [...newArr]
+                                                                curriculum: newArr
                                                             }
-                                                        })
-                                                    }
-                                                }}
-                                                className=" p-2 w-fit rounded-lg ring-1 ring-accent"
-                                            >
-                                                <FontAwesomeIcon className=" text-[14px] " icon={faTrash} />
-                                            </button>
-                                        </li>
-                                    )
-                                })
-                            }
-                            <button 
-                                onClick={() => setSectionData((prev): any => {
-                                    const newArr = [...prev.curriculum]
-                                    newArr.push({text: "", id: crypto.randomUUID()})
-                                    return {
-                                        ...prev,
-                                        curriculum: [...newArr]
-                                    }
-                                })}
-                                className=" p-2 w-fit rounded-lg ring-1 ring-accent"
-                            >
-                                <FontAwesomeIcon className=" text-[14px]  " icon={faPlus} />
-                            </button>
-                        </ul>
-                    </Form.Item>
-                    <Form.Item
-                        label={"Scholarship"}
-                        name={"scholarship"}
-                    >
-                        <ul className=" px-2 flex flex-col gap-2 ">
-                            {
-                                sectionData?.scholarship.map(({text, content, id}, idx) => {
-                                    return(
-                                        <li key={`${id}`} className=" flex justify-center items-center gap-2 ">
-                                            <div className=" flex flex-col gap-2 w-full ">
-                                                <Input defaultValue={text} className=" input " placeholder="Enter scholarship name..." 
-                                                    onChange={(e) => setSectionData((prev): any=> {
-                                                        const newArr = [...prev.scholarship]
-                                                        newArr[idx].text = e.target.value
-                                                        return {
-                                                            ...prev,
-                                                            scholarship: newArr
-                                                        }
-                                                    })} 
-                                                />
-                                                <TextArea 
-                                                    className=" !h-[100px] "
-                                                    placeholder="Enter about scholarship..."
-                                                    defaultValue={content}
-                                                    onChange={(e) => setSectionData((prev): any => {
-                                                        const newArr = [...prev.scholarship]
-                                                        newArr[idx].content = e.target.value
-                                                        return {
-                                                            ...prev,
-                                                            scholarship: newArr
-                                                        }
-                                                    })}
-                                                />
-                                            </div>
-                                            <button
-                                                onClick={() => {
-                                                    if (sectionData?.scholarship.length <= 1){
-                                                        return
-                                                    }else{
-                                                        setSectionData((prev: any) => {
-                                                            const newArr = [...prev?.scholarship]
-                                                            newArr.splice(idx, 1)
-                                                            return {
-                                                                ...prev,
-                                                                scholarship: [...newArr]
+                                                        })} 
+                                                    />
+                                                    <button
+                                                        onClick={() => {
+                                                            if (sectionData?.curriculum.length <= 1){
+                                                                return
+                                                            }else{
+                                                                setSectionData((prev: any) => {
+                                                                    const newArr = [...prev?.curriculum]
+                                                                    newArr.splice(idx, 1)
+                                                                    return {
+                                                                        ...prev,
+                                                                        curriculum: [...newArr]
+                                                                    }
+                                                                })
                                                             }
-                                                        })
-                                                    }
-                                                }}
-                                                className=" p-2 w-fit rounded-lg ring-1 ring-accent"
-                                            >
-                                                <FontAwesomeIcon className=" text-[14px] " icon={faTrash} />
-                                            </button>
-                                        </li>
-                                    )
-                                })
-                            }
-                            <button 
-                                onClick={() => setSectionData((prev): any => {
-                                    const newArr = [...prev.scholarship]
-                                    newArr.push({text: "", content: "", id: crypto.randomUUID()})
-                                    return {
-                                        ...prev,
-                                        scholarship: [...newArr]
+                                                        }}
+                                                        className=" p-2 w-fit rounded-lg ring-1 ring-accent"
+                                                    >
+                                                        <FontAwesomeIcon className=" text-[14px] " icon={faTrash} />
+                                                    </button>
+                                                </li>
+                                            )
+                                        })
                                     }
-                                })}
-                                className=" p-2 w-fit rounded-lg ring-1 ring-accent"
+                                    <button 
+                                        onClick={() => setSectionData((prev): any => {
+                                            const newArr = [...prev.curriculum]
+                                            newArr.push({text: "", id: uuidv4()})
+                                            return {
+                                                ...prev,
+                                                curriculum: [...newArr]
+                                            }
+                                        })}
+                                        className=" p-2 w-fit rounded-lg ring-1 ring-accent"
+                                    >
+                                        <FontAwesomeIcon className=" text-[14px]  " icon={faPlus} />
+                                    </button>
+                                </ul>
+                            </Form.Item>
+                        )
+                    }
+                    {
+                        section === "scholarship" && (
+                            <Form.Item
+                                label={"Scholarship"}
+                                name={"scholarship"}
                             >
-                                <FontAwesomeIcon className=" text-[14px]  " icon={faPlus} />
-                            </button>
-                        </ul>
-                    </Form.Item>
+                                <ul className=" px-2 flex flex-col gap-2 ">
+                                    {
+                                        sectionData?.scholarship.map(({text, content, id}, idx) => {
+                                            return(
+                                                <li key={`${id}`} className=" flex justify-center items-center gap-2 ">
+                                                    <div className=" flex flex-col gap-2 w-full ">
+                                                        <Input defaultValue={text} className=" input " placeholder="Enter scholarship name..." 
+                                                            onChange={(e) => setSectionData((prev): any=> {
+                                                                const newArr = [...prev.scholarship]
+                                                                newArr[idx].text = e.target.value
+                                                                return {
+                                                                    ...prev,
+                                                                    scholarship: newArr
+                                                                }
+                                                            })} 
+                                                        />
+                                                        <TextArea 
+                                                            className=" !h-[100px] "
+                                                            placeholder="Enter about scholarship..."
+                                                            defaultValue={content}
+                                                            onChange={(e) => setSectionData((prev): any => {
+                                                                const newArr = [...prev.scholarship]
+                                                                newArr[idx].content = e.target.value
+                                                                return {
+                                                                    ...prev,
+                                                                    scholarship: newArr
+                                                                }
+                                                            })}
+                                                        />
+                                                    </div>
+                                                    <button
+                                                        onClick={() => {
+                                                            if (sectionData?.scholarship.length <= 1){
+                                                                return
+                                                            }else{
+                                                                setSectionData((prev: any) => {
+                                                                    const newArr = [...prev?.scholarship]
+                                                                    newArr.splice(idx, 1)
+                                                                    return {
+                                                                        ...prev,
+                                                                        scholarship: [...newArr]
+                                                                    }
+                                                                })
+                                                            }
+                                                        }}
+                                                        className=" p-2 w-fit rounded-lg ring-1 ring-accent"
+                                                    >
+                                                        <FontAwesomeIcon className=" text-[14px] " icon={faTrash} />
+                                                    </button>
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                    <button 
+                                        onClick={() => setSectionData((prev): any => {
+                                            const newArr = [...prev.scholarship]
+                                            newArr.push({text: "", content: "", id: uuidv4()})
+                                            return {
+                                                ...prev,
+                                                scholarship: [...newArr]
+                                            }
+                                        })}
+                                        className=" p-2 w-fit rounded-lg ring-1 ring-accent"
+                                    >
+                                        <FontAwesomeIcon className=" text-[14px]  " icon={faPlus} />
+                                    </button>
+                                </ul>
+                            </Form.Item>
+                        )
+                    }
                 </Form>
             </CustomModal>
         </div>
